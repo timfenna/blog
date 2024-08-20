@@ -4,6 +4,7 @@ class ArticlesController < ApplicationController
   end
 
   def show
+    # debugger
     @article = Article.find(params[:id])
   end
 
@@ -33,6 +34,14 @@ class ArticlesController < ApplicationController
     else
       render :edit, status: :unprocessable_entity
     end
+  end
+
+  def destroy
+    # debugger
+    @article = Article.find(params[:id])
+    @article.destroy
+
+    redirect_to root_path, status: :see_other
   end
 
   private
