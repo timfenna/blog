@@ -36,6 +36,14 @@ class ApplicationPolicy
     false
   end
 
+  def is_owner?
+    user.id == record.user.id
+  end
+  
+  def is_visible?
+    record.status == "public" || (record.status == "private" && is_owner?)
+  end
+
   class Scope
     def initialize(user, scope)
       @user = user

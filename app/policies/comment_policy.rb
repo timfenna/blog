@@ -1,11 +1,4 @@
-class ArticlePolicy < ApplicationPolicy
-  def show?
-    is_visible?
-  end
-
-  def edit?
-    is_owner?
-  end
+class CommentPolicy < ApplicationPolicy
 
   def update?
     is_owner?
@@ -26,4 +19,5 @@ class ArticlePolicy < ApplicationPolicy
       scope.where(status: "public").or(scope.where(status: "private", user_id: user.id))
     end
   end
+
 end

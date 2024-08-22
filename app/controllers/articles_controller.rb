@@ -1,11 +1,11 @@
 class ArticlesController < ApplicationController
   before_action :require_login, except: [:index, :show]
   def index
-    @articles = Article.all
+    @articles = policy_scope(Article).all
   end
 
   def show
-    @article = Article.find(params[:id])
+    authorize @article = Article.find(params[:id])
   end
 
   def new
@@ -25,6 +25,7 @@ class ArticlesController < ApplicationController
 
   def edit
     @article = Article.find(params[:id])
+    authorize @article
   end
 
   def update
@@ -39,6 +40,7 @@ class ArticlesController < ApplicationController
 
   def destroy
     @article = Article.find(params[:id])
+    authorize @article
     @article.destroy
 
     redirect_to root_path, status: :see_other
