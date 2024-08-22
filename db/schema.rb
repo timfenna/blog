@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2024_08_20_145515) do
+ActiveRecord::Schema[7.2].define(version: 2024_08_21_145942) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -20,17 +20,36 @@ ActiveRecord::Schema[7.2].define(version: 2024_08_20_145515) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "status"
+    t.bigint "user_id", null: false
+    t.index ["user_id"], name: "index_articles_on_user_id"
   end
 
   create_table "comments", force: :cascade do |t|
-    t.string "commenter"
     t.text "body"
     t.integer "article_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "status"
+    t.bigint "user_id", null: false
     t.index ["article_id"], name: "index_comments_on_article_id"
+    t.index ["user_id"], name: "index_comments_on_user_id"
   end
 
+  create_table "users", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "email", null: false
+    t.string "encrypted_password", limit: 128, null: false
+    t.string "confirmation_token", limit: 128
+    t.string "remember_token", limit: 128, null: false
+    t.string "username"
+    t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
+    t.index ["email"], name: "index_users_on_email"
+    t.index ["remember_token"], name: "index_users_on_remember_token", unique: true
+    t.index ["username"], name: "index_users_on_username", unique: true
+  end
+
+  add_foreign_key "articles", "users"
   add_foreign_key "comments", "articles"
+  add_foreign_key "comments", "users"
 end

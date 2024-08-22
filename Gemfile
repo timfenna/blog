@@ -59,3 +59,5 @@ group :test do
 end
 
 gem "pg", "~> 1.5"
+
+gem "clearance", "~> 2.8"
