@@ -29,7 +29,7 @@ class ArticlesController < ApplicationController
 
   def update
     @article = Article.find(params[:id])
-
+    authorize @article
     if @article.update(article_params)
       redirect_to @article
     else
