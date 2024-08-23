@@ -23,7 +23,11 @@ class ArticlePolicy < ApplicationPolicy
     private
 
     def visible?
-      scope.where(status: "public").or(scope.where(status: "private", user_id: user.id))
+      if user != nil
+        scope.where(status: "public").or(scope.where(status: "private", user_id: user.id))
+      else
+        scope.where(status: "public")
+      end
     end
   end
 end
