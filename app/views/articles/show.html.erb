@@ -1,18 +1,7 @@
-<h1><%= @article.title %></h1>
-<h2>Written by <%= @article.user.username %></h2>
-
-<p><%= @article.body %></p>
-
-<ul>
-  <li><%= link_to "Edit", edit_article_path(@article) %></li>
-  <li><%= link_to "Destroy", article_path(@article), data: {
-    turbo_method: :delete,
-    turbo_confirm: "Are you sure?"
-  } %></li>
-</ul>
+<%= render(Articles::ArticleComponent.new(article: @article)) %>
 
 <h2>Comments</h2>
-<%= render policy_scope(@article.comments) %>
+<%= render(Comments::CommentComponent.with_collection(policy_scope(@article.comments))) %>
 
 <h2>Add a comment:</h2>
-<%= render "comments/form", article: @article %>
+<%= render(Comments::FormComponent.new(article: @article)) %>
