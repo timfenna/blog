@@ -1,15 +1,30 @@
-<h1 class="text-xl">Articles</h1>
+<div class="h-full">
+  <div class="text-center">
+    <h1 class="text-4xl font-bold tracking-tight text-gray-900 sm:text-6xl">Articles</h1>
+  </div>
 
-Our blog has <%= Article.public_count %> public articles and counting!
+  <p class="mt-6 text-lg leading-8 text-gray-600">
+    Our blog has <%= Article.public_count %> public articles and counting!
+  </p>
 
-<ul>
-  <%@articles.each do |article| %>
-    <% unless article.archived? %>
-      <li>
-        <%= link_to article.title, article %> - <%= article.user.username %>
-      </li>
+  <div class="text-center mt-4 mb-4">
+    <%= link_to '<i class="fa fa-plus"></i> New Article'.html_safe, new_article_path, class: "mt-4 bg-gray-900 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded" %>
+  </div>
+
+  <ul>
+    <%@articles.each do |article| %>
+      <% unless article.archived? %>
+        <li class="flex justify-between gap-x-6 py-5">
+          <div class="flex min-w-0 gap-x-4">
+            <i class="fa fa-file mt-1"></i>
+            <div class="min-w-0 flex-auto">
+              <p class="text-sm font-semibold leading-6 text-gray-900"><%= link_to article.title, article %></p>
+              <p class="mt-1 truncate text-xs leading-5 text-gray-500"><%= article.user.username %></p>
+            </div>
+          </div>
+        </li>
+        <hr>
+      <% end %>
     <% end %>
-  <% end %>
-</ul>
-
-<%= link_to "New Article", new_article_path %>
+  </ul>
+</div>

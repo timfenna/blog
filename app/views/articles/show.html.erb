@@ -1,7 +1,15 @@
-<%= render(Articles::ArticleComponent.new(article: @article)) %>
+<div class="h-full">
+  <%= render(Articles::ArticleComponent.new(article: @article)) %>
 
-<h2>Comments</h2>
-<%= render(Comments::CommentComponent.with_collection(policy_scope(@article.comments))) %>
+  <h2 class="mt-6 text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">Comments</h2
+  <% if policy_scope(@article.comments).empty? %>
+    <p class="mt-3">Be the first to  write a comment!</p>
+  <% else %>
+    <%= render(Comments::CommentComponent.with_collection(policy_scope(@article.comments))) %>
+  <% end %>
 
-<h2>Add a comment:</h2>
-<%= render(Comments::FormComponent.new(article: @article)) %>
+  <h2 class="mt-6 text-2xl font-bold tracking-tight text-gray-900 sm:text-4xl">Add a comment</h2>
+  <%= render(Comments::FormComponent.new(article: @article)) %>
+</div>
+
+

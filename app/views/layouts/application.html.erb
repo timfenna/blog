@@ -1,12 +1,13 @@
 <!DOCTYPE html>
-<html>
+<html class="h-full">
   <head>
-    <title><%= content_for(:title) || "Blog" %></title>
+    <title><%= content_for(:title) || "Blogstars" %></title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
+    <!-- not working -->
     <%#= javascript_importmap_tags %>
 
     <%= yield :head %>
@@ -19,9 +20,11 @@
     <%= turbo_include_tags %>
   </head>
 
-  <body>
+  <body class="h-full">
     <%= render(Navigation::NavbarComponent.new) %>
     <%= render(Flash::FlashComponent.new) %>
-    <%= yield %>
+    <div class="container mx-auto flex justify-center items-center h-full">
+      <%= yield %>
+    </div>
   </body>
 </html>

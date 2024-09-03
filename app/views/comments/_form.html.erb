@@ -1,14 +1,21 @@
 <%= form_with model: [article, article.comments.build ] do |form| %>
-  <p>
+
+  <div>
     <%= form.label :body %>
     <%= form.text_area :body %>
-  </p>
+  </div>
 
-  <p>
+    <% @comment.errors.full_messages_for(:body).each do |message| %>
+    <div><%= message %></div>
+    <% end %>
+
+
+
+  <div>
     <%= form.label :status %><br>
     <%= form.select :status, Visible::VALID_STATUSES, selected: "public" %>
-  </p>
-  <p>
+  </div>
+  <div>
     <%= form.submit %>
-  </p>
+  </div>
 <% end %>

@@ -1,18 +1,22 @@
 <% unless @comment.archived? %>
-  <p>
-    <strong>Commenter:</strong>
-    <%= @comment.user.username %>
-  </p>
+  <div class="mt-3 shadow-lg bg-slate-50 p-5">
+    <div class="flex-row justify-content-between w-full">
+      <span>
+        <i class="fa fa-user text-slate-500"></i>
+        <%= @comment.user.username %>
+      </span>
 
-  <p>
-    <strong>Comment:</strong>
-    <%= @comment.body %>
-  </p>
+      <span>
+        <%= link_to '<i class="fa fa-trash"></i>'.html_safe, [@comment.article, @comment], data: {
+          turbo_method: :delete,
+          turbo_confirm: "Are you sure?"
+        } %>
+      </span>
+    </div>
 
-  <p>
-    <%= link_to "Destroy Comment", [@comment.article, @comment], data: {
-      turbo_method: :delete,
-      turbo_confirm: "Are you sure?"
-    } %>
-  </p>
+    <p class="mt-3">
+      <%= @comment.body %>
+    </p>
+
+  </div>
 <% end %>

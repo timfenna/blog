@@ -1,0 +1,19 @@
+<div class="h-1/2">
+
+  <div class="text-center">
+    <h1 class="text-4xl font-bold tracking-tight text-gray-900 sm:text-6xl">Blogstars</h1>
+  </div>
+
+  <p class="mt-6 text-lg leading-8 text-gray-600">
+    Our blog has <%= Article.public_count %> public articles and counting!
+  </p>
+
+  <div class="flex justify-center">
+    <% if signed_in? %>
+      <%= link_to "View Articles", articles_path, class:"mt-4 bg-gray-900 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded"%>
+    <% else %>
+      <%= link_to "Sign in to view articles", articles_path, class:"mt-4 bg-gray-900 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded"%>
+    <% end %>
+  </div>
+
+</div>

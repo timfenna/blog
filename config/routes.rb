@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
 
-  root "articles#index"
+  root "home#index"
 
   resources :passwords, controller: "clearance/passwords", only: [ :create, :new ]
   resource :session, controller: "clearance/sessions", only: [ :create ]
@@ -30,5 +30,5 @@ Rails.application.routes.draw do
   get "manifest" => "rails/pwa#manifest", as: :pwa_manifest
 
   # Defines the root path route ("/")
-  # root "posts#index"
+  # root "posts#home"
 end

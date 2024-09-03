@@ -1,14 +1,25 @@
-<%= form_with model: [ @article, @article.comments.build ] do |form| %>
+<%= form_with model: [ @article, @article.comments.build ], class: "bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4" do |form| %>
   <p>
-    <%= form.label :body %>
+    <%= form.label :body%><br>
     <%= form.text_area :body %>
   </p>
+
+  <% @article.comments.each do |comment| %>
+    <div>
+      <% if comment.errors.any? %>
+        <% comment.errors.full_messages_for(:body).each do |message| %>
+          <%= message %><br>
+        <% end %>
+      <% end %>
+    </div>
+  <% end %>
+
 
   <p>
     <%= form.label :status %><br>
     <%= form.select :status, Visible::VALID_STATUSES, selected: "public" %>
   </p>
   <p>
-    <%= form.submit %>
+    <%= form.submit 'Add Comment', class: "mt-4 bg-gray-900 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded"%>
   </p>
 <% end %>
