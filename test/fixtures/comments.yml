@@ -1,11 +1,25 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
-  commenter: MyString
+public_comment_on_public_article:
+  user: author_of_private_article
   body: MyText
-  article: one
+  article: public_article
+  status: public
 
-two:
-  commenter: MyString
+private_comment_on_public_article:
+  user: author_of_public_comment
   body: MyText
-  article: two
+  article: public_article
+  status: private
+
+public_comment_on_private_article:
+  user: author_of_private_article
+  body: CommentBody
+  article: private_article
+  status: public
+
+private_comment_on_private_article:
+  user: author_of_private_article
+  body: CommentBody
+  article: private_article
+  status: private

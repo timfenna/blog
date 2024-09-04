@@ -1,0 +1,44 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+<% 100.times do |n| %>
+user_<%= n %>:
+    email: <%= "user#{n}@email.com"%>
+    encrypted_password: <%= "EnCrYpTeDpAsSwOrD#{n}" %>
+    username: <%= "user#{n}" %>
+    remember_token: <%= "token_#{n}" %>
+<% end %>
+
+author_of_private_article:
+  email: author_private@email.com
+  encrypted_password: MyPassword
+  username: private_article_author
+  remember_token: MyToken01
+
+author_of_public_article:
+  email: author_public@email.com
+  encrypted_password: MyPassword
+  username: public_article_author
+  remember_token: MyToken02
+
+author_of_private_comment:
+  email: author_private_comment@email.com
+  encrypted_password: MyPassword
+  username: private_comment_author
+  remember_token: MyToken03
+
+author_of_public_comment:
+  email: author_public_comment@email.com
+  encrypted_password: MyPassword
+  username: public_comment_author
+  remember_token: MyToken04
+
+user_who_is_not_an_author:
+  email: not_author@email.com
+  encrypted_password: MyPassword
+  username: not_author
+  remember_token: MyToken05
+
+
+
+
+
+
