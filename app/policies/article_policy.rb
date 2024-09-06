@@ -15,6 +15,10 @@ class ArticlePolicy < ApplicationPolicy
     is_owner?
   end
 
+  def create?
+    true
+  end
+
   class Scope < ApplicationPolicy::Scope
     def resolve
       visible?

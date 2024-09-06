@@ -1,5 +1,7 @@
 class ArticlesController < ApplicationController
   before_action :require_login
+  before_action :set_article, only: %i[edit update destroy]
+
   def index
     @articles = policy_scope(Article).all
   end
@@ -24,13 +26,9 @@ class ArticlesController < ApplicationController
   end
 
   def edit
-    @article = Article.find(params[:id])
-    authorize @article
   end
 
   def update
-    @article = Article.find(params[:id])
-    authorize @article
     if @article.update(article_params)
       redirect_to @article
     else
@@ -39,15 +37,21 @@ class ArticlesController < ApplicationController
   end
 
   def destroy
-    @article = Article.find(params[:id])
-    authorize @article
     @article.destroy
-
-    redirect_to root_path, status: :see_other
+    redirect_to articles_url, status: :see_other
   end
 
   private
   def article_params
     params.require(:article).permit(:title, :body, :status)
+  end
+
+  def my_debugger
+    # this is my own debugger method
+    debugger
+  end
+
+  def set_article
+    @article = authorize Article.find(params[:id])
   end
 end

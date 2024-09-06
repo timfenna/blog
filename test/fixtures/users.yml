@@ -1,41 +1,41 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
-<% 100.times do |n| %>
-user_<%= n %>:
-    email: <%= "user#{n}@email.com"%>
-    encrypted_password: <%= "EnCrYpTeDpAsSwOrD#{n}" %>
-    username: <%= "user#{n}" %>
-    remember_token: <%= "token_#{n}" %>
-<% end %>
+<%# 100.times do |n| %>
+#user_<%#= n %>:
+#    email: <%#= "user#{n}@email.com"%>
+#    encrypted_password: <%#= "EnCrYpTeDpAsSwOrD#{n}" %>
+#    username: <%#= "user#{n}" %>
+#    remember_token: <%#= "token_#{n}" %>
+<%# end %>
 
 author_of_private_article:
   email: author_private@email.com
   encrypted_password: MyPassword
   username: private_article_author
-  remember_token: MyToken01
+  remember_token: <%= Clearance::Token.new %>
 
 author_of_public_article:
   email: author_public@email.com
   encrypted_password: MyPassword
   username: public_article_author
-  remember_token: MyToken02
+  remember_token: <%= Clearance::Token.new %>
 
 author_of_private_comment:
   email: author_private_comment@email.com
   encrypted_password: MyPassword
   username: private_comment_author
-  remember_token: MyToken03
+  remember_token: <%= Clearance::Token.new %>
 
 author_of_public_comment:
   email: author_public_comment@email.com
   encrypted_password: MyPassword
   username: public_comment_author
-  remember_token: MyToken04
+  remember_token: <%= Clearance::Token.new %>
 
 user_who_is_not_an_author:
   email: not_author@email.com
   encrypted_password: MyPassword
   username: not_author
-  remember_token: MyToken05
+  remember_token: <%= Clearance::Token.new %>
 
 
 

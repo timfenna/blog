@@ -1,0 +1,7 @@
+<%= turbo_stream.replace "comments_form" do %>
+  <%= render(Comments::FormComponent.new(article: @article)) %>
+<% end %>
+
+<%= turbo_stream.append "comments" do %>
+  <%= render Comments::CommentComponent.new(comment: @comment) %>
+<% end %>

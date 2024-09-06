@@ -1,6 +1,17 @@
 require "test_helper"
 
 class ArticleTest < ActiveSupport::TestCase
+
+  test "should save article" do
+    article = Article.new(
+      body: "This is the article body",
+      title: "This is the title",
+      status: "public",
+      user: users(:author_of_public_article)
+    )
+    assert article.save
+  end
+
   test "should not save article without title" do
     article = Article.new(
       body: "This is the article body",
