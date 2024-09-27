@@ -64,7 +64,7 @@ gem "clearance", "~> 2.8"
 
 gem "pundit", "~> 2.3"
 
-gem "view_component", "~> 3.13"
+gem "view_component", "~> 3.15"
 
 gem "tailwindcss-rails", "~> 2.7"
 
